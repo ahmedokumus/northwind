@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +48,10 @@ export class ProductComponent implements OnInit {
   }
 
   addToCard(product: Product) {
-    console.log(product);
+    if (product.productId == 1) {
+      this.toastrService.error('Ürün sepete eklenemez', 'Hata');
+    } else {
+      this.toastrService.success('Sepete Eklendi', product.productName);
+    }
   }
 }
