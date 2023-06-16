@@ -11,7 +11,7 @@ export class CardService {
   constructor() {}
 
   addToCard(product: Product) {
-    let item = CardItems.find((p) => p.product.productId == product.productId);
+    let item = CardItems.find((c) => c.product.productId === product.productId);
     if (item) {
       item.quantity += 1;
     } else {
@@ -20,6 +20,11 @@ export class CardService {
       cardItem.quantity = 1;
       CardItems.push(cardItem);
     }
+  }
+
+  removeFromCard(product: Product) {
+    let item = CardItems.find((c) => c.product.productId === product.productId);
+    CardItems.splice(CardItems.indexOf(item), 1);
   }
 
   list(): CardItem[] {

@@ -1,4 +1,4 @@
-<li *ngIf="cardItems" class="nav-item dropdown">
+<li *ngIf="cardItems.length > 0" class="nav-item dropdown">
   <a
     class="nav-link dropdown-toggle"
     href="#"
@@ -7,18 +7,19 @@
     aria-expanded="false"
   >
     Sepetiniz
-    <span
-      class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-info"
-    >
-      1
-      <span class="visually-hidden">unread messages</span>
-    </span>
   </a>
   <ul class="dropdown-menu">
-    <li>
-      <a *ngFor="let cardItem of cardItems" class="dropdown-item">{{
-        cardItem.product.productName
-      }}</a>
+    <li *ngFor="let cardItem of cardItems">
+      <a class="dropdown-item"
+        >{{ cardItem.product.productName }}
+        <span class="badge text-bg-secondary">x {{ cardItem.quantity }} </span>
+        <button
+          (click)="removeFromCard(cardItem.product)"
+          class="badge text-bg-danger"
+        >
+          x
+        </button>
+      </a>
     </li>
     <li><hr class="dropdown-divider" /></li>
     <li><a class="dropdown-item">Sepete git</a></li>

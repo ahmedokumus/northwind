@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Ürün Ekle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="productAddForm" action="">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Ürün adı</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="productName"
+                formControlName="productName"
+                class="form-control"
+                placeholder="Ürün adı"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="categoryId" class="form-label">Kategori</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="categoryId"
+                formControlName="categoryId"
+                class="form-control"
+                placeholder="Kategori"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="unitsInStock" class="form-label">Stok adedi</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="unitsInStock"
+                formControlName="unitsInStock"
+                class="form-control"
+                placeholder="Stok adedi"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="unitPrice" class="form-label">Ürün fiyatı</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="unitPrice"
+                formControlName="unitPrice"
+                class="form-control"
+                placeholder="Ürün fiyatı"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="text-end">
+        <div class="card-footer">
+          <button (click)="add()" class="btn btn-outline-success">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

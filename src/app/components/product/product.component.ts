@@ -4,6 +4,8 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CardService } from 'src/app/services/card.service';
+import { ProductDetail } from 'src/app/models/productDetail';
 
 @Component({
   selector: 'app-product',
@@ -18,7 +20,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cardService: CardService
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +51,11 @@ export class ProductComponent implements OnInit {
   }
 
   addToCard(product: Product) {
-    if (product.productId == 1) {
-      this.toastrService.error('Ürün sepete eklenemez', 'Hata');
+    if (product.unitsInStock <= 0) {
+      this.toastrService.error('Ürün sepete eklenemez', 'Stokta yok');
     } else {
       this.toastrService.success('Sepete Eklendi', product.productName);
+      this.cardService.addToCard(product);
     }
   }
 }
